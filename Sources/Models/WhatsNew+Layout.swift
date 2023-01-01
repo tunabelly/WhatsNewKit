@@ -27,6 +27,12 @@ public extension WhatsNew {
         /// The feature list padding
         public var featureListPadding: EdgeInsets
         
+        /// The feature list title font
+        public var featureListTitleFont: Font
+        
+        /// The feature list subtitle font
+        public var featureListSubtitleFont: Font
+        
         /// The feature image width
         public var featureImageWidth: CGFloat
         
@@ -58,6 +64,8 @@ public extension WhatsNew {
         ///   - contentPadding: The content padding. Default value `top: 65`
         ///   - featureListSpacing: The feature list spacing. Default value `25`
         ///   - featureListPadding: The feature list padding. Default value `leading: 15`
+        ///   - featureListTitleFont: The feature list title font. Default value  .subheadline.weight(.semibold))
+        ///   - featureListSubtitleFont: The feature list subtitle font. Default value  .subheadline
         ///   - featureImageWidth: The feature image width. Default value `40`
         ///   - featureHorizontalSpacing: The feature horizontal spacing. Default value `15`
         ///   - featureVerticalSpacing: The feature vertical spacing. Default value `2`
@@ -71,6 +79,8 @@ public extension WhatsNew {
             contentPadding: EdgeInsets = .init(top: 65, leading: 0, bottom: 0, trailing: 0),
             featureListSpacing: CGFloat = 25,
             featureListPadding: EdgeInsets = .init(top: 0, leading: 15, bottom: 0, trailing: 0),
+            featureListTitleFont: Font = Font.subheadline.weight(.semibold),
+            featureListSubtitleFont: Font = Font.subheadline,
             featureImageWidth: CGFloat = 40,
             featureHorizontalSpacing: CGFloat = 15,
             featureHorizontalAlignment: VerticalAlignment = .center,
@@ -85,6 +95,8 @@ public extension WhatsNew {
             self.contentPadding = contentPadding
             self.featureListSpacing = featureListSpacing
             self.featureListPadding = featureListPadding
+            self.featureListTitleFont = featureListTitleFont
+            self.featureListSubtitleFont = featureListSubtitleFont
             self.featureImageWidth = featureImageWidth
             self.featureHorizontalSpacing = featureHorizontalSpacing
             self.featureHorizontalAlignment = featureHorizontalAlignment
