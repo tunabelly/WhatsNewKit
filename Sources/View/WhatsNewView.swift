@@ -104,6 +104,9 @@ extension WhatsNewView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }
+        #if os(macOS)
+        .fixedSize()
+        #endif
         .sheet(
             item: self.$secondaryActionPresentedView,
             content: { $0.view }
