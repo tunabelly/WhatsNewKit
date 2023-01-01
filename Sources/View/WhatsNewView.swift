@@ -105,6 +105,7 @@ extension WhatsNewView: View {
             .edgesIgnoringSafeArea(.bottom)
         }
         #if os(macOS)
+        .frame(maxWidth: 800)
         .fixedSize()
         #endif
         .sheet(
