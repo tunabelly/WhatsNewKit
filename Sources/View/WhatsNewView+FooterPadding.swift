@@ -31,13 +31,7 @@ extension WhatsNewView.FooterPadding: ViewModifier {
         content: Content
     ) -> some View {
         #if os(macOS)
-        if #available(macOS 14, *) {
-            // on macOS 14 it seems it needs more padding in the bottom or else part of the window gets cut off
-            content.padding(.bottom, 70)
-        }
-        else {
             content.padding(.bottom, 30)
-        }
         #else
         if self.horizontalSizeClass == .regular {
             content.padding(

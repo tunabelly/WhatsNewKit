@@ -49,6 +49,49 @@ extension WhatsNewView: View {
     
     /// The content and behavior of the view.
     public var body: some View {
+        #if os(macOS)
+        VStack {
+            // Content Stack
+            VStack(
+                spacing: self.layout.contentSpacing
+            ) {
+                // Title
+                self.title
+                // Feature List
+                VStack(
+                    alignment: .leading,
+                    spacing: self.layout.featureListSpacing
+                ) {
+                    // Feature
+                    ForEach(
+                        self.whatsNew.features,
+                        id: \.self,
+                        content: self.feature
+                    )
+                }
+                .modifier(FeaturesPadding())
+                .padding(self.layout.featureListPadding)
+            }
+            .padding(.horizontal)
+            .padding(self.layout.contentPadding)
+           
+            // Footer
+            VStack {
+                Spacer()
+                self.footer
+                    .modifier(FooterPadding())
+            }
+            .edgesIgnoringSafeArea(.bottom)
+        }
+        .frame(minWidth: 800, minHeight: 300)
+        .fixedSize(horizontal: false, vertical: true)
+        .onDisappear {
+            // Save presented WhatsNew Version, if available
+            self.whatsNewVersionStore?.save(
+                presentedVersion: self.whatsNew.version
+            )
+        }
+        #else
         ZStack {
             // Content ScrollView
             ScrollView(
@@ -104,10 +147,6 @@ extension WhatsNewView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }
-        #if os(macOS)
-        .frame(maxWidth: 800)
-        .fixedSize()
-        #endif
         .sheet(
             item: self.$secondaryActionPresentedView,
             content: { $0.view }
@@ -118,6 +157,7 @@ extension WhatsNewView: View {
                 presentedVersion: self.whatsNew.version
             )
         }
+        #endif
     }
     
 }
